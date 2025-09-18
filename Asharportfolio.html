@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashar Salama - Communication & Information Engineering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="300" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="400" cy="600" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="700" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: block;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite alternate;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .experience-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-date {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Languages & Certificates */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .language-item, .cert-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .language-item:hover, .cert-item:hover {
+            transform: translateX(10px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="1755420548313.jpeg" alt="Ashar Salama" class="profile-img">
+                <h1>Ashar Salama</h1>
+                <p class="subtitle">Communication & Information Engineering Student</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <a href="tel:+201125066363">01125066363</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <a href="mailto:asharsakr@gmail.com">asharsakr@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <a href="https://www.linkedin.com/in/ashar-sakr-3232b9128/" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>October Gardens</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                    <li><a href="#Projects">Projects</a></li>
+                    <li><a href="#Offeredservices">Offered Services </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">2027</div>
+                        <div>Expected Graduation</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">7+</div>
+                        <div>Programming & Simulation Tools</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4+</div>
+                        <div>Certificates Earned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div>Extracurricular Activities</div>
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <p>I'm a dedicated Communication and Information Engineering student at Zewail City with a strong foundation in programming and electronics. My passion lies in antenna design, circuit simulation, and developing innovative solutions in communication systems.</p>
+                    
+                    <p>With hands-on experience in various simulation software and programming languages, I'm eager to contribute to cutting-edge projects while continuously expanding my knowledge in embedded systems and antenna infrastructure.</p>
+                    
+                    <p>Beyond academics, I'm actively involved in community service through Resala charity's life-saving team and have participated in various leadership programs including the Leaders of Tomorrow exchange program.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">SystemVerilog</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Electronics & Circuit Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">LTSpice</span>
+                        <span class="skill-tag">Multisim</span>
+                        <span class="skill-tag">Circuit Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Network Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Networking Principles</span>
+                        <span class="skill-tag">Routing Protocols</span>
+                        <span class="skill-tag">Switching Technologies</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Troubleshooting</span>
+                        <span class="skill-tag">Huawei Device Configuration</span>
+                        <span class="skill-tag">Wireless Networking</span>
+                        <span class="skill-tag">Ethernet</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Simulation Software</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CST Studio Suite</span>
+                        <span class="skill-tag">Proteus</span>
+                        <span class="skill-tag">ENSP</span>
+                        <span class="skill-tag">Cadence</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Knowledge Areas</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Networks</span>
+                        <span class="skill-tag">Analog Electronics</span>
+                        <span class="skill-tag">Digital Electronics</span>
+                        <span class="skill-tag">Antennas</span>
+                        <span class="skill-tag">Microwaves & RF</span>
+                        <span class="skill-tag">Modulation Techniques</span>
+                        <span class="skill-tag">Data Transmission</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="experience-card fade-in">
+                <h3>Communication and Information Engineering</h3>
+                <div class="experience-date">2022 - 2027</div>
+                <p><strong>Zewail City</strong></p>
+                <p>CIE student with comprehensive training in communication systems, embedded systems, and antenna infrastructure. Specialized coursework in antenna design, circuit simulation, and programming with practical applications using industry-standard software.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience & Activities</h2>
+            <div class="experience-grid">
+                <div class="experience-card fade-in">
+                    <h3>Network Infrastructure Summer Training</h3>
+                    <div class="experience-date">National Telecommunication Institute (NTI)</div>
+                    <div class="experience-date">August 2025 - September 2026</div>
+                    <p>Comprehensive training program covering networking foundations including network concepts, network infrastructure, layers, addressing, switching, routing, and various network services and applications. The course emphasized network security aspects with troubleshooting support for real-world issues.</p>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <h3>Trainee - Digital Egypt Pioneers Initiative (DEPI)</h3>
+                    <div class="experience-date">June 2025 - January 2026</div>
+                    <p>Intensive training program focusing on advanced technical skills and industry best practices in information technology and communications.</p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <h3>Life-saving Team Member</h3>
+                    <div class="experience-date">Resala Charity</div>
+                    <p>Active volunteer in emergency response and community service activities, developing leadership and crisis management skills.</p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <h3>Leaders of Tomorrow Alumni</h3>
+                    <div class="experience-date">2021</div>
+                    <p>International exchange program participant, enhancing cross-cultural communication and leadership capabilities.</p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <h3>Video Editor - TEDx Youth Maadi STEM</h3>
+                    <div class="experience-date">Content Creation</div>
+                    <p>Responsible for video production and editing for educational and inspirational content at TEDx events.</p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <h3>Multimedia Member - AUC Astronomy Club</h3>
+                    <div class="experience-date">American University in Cairo</div>
+                    <p>Created and managed multimedia content for astronomical events and educational outreach programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <div class="container">
+            <h2>Languages & Certificates</h2>
+            <div class="two-column">
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 30px;">Languages</h3>
+                    <div class="language-item fade-in">
+                        <h4>English</h4>
+                        <p>Professional proficiency</p>
+                    </div>
+                    <div class="language-item fade-in">
+                        <h4>Arabic</h4>
+                        <p>Native speaker</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 30px;">Certificates</h3>
+                    <div class="cert-item fade-in">
+                        <h4>Python for Everybody</h4>
+                        <p>Coursera</p>
+                    </div>
+                    <div class="cert-item fade-in">
+                        <h4>Machine Learning</h4>
+                        <p>Coursera</p>
+                    </div>
+                    <div class="cert-item fade-in">
+                        <h4>Introduction to Cybersecurity Tools & Cyberattacks</h4>
+                        <p>Coursera</p>
+                    </div>
+                    <div class="cert-item fade-in">
+                        <h4>Huawei Network Administrator</h4>
+                        <p>Huawei</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+    <section id="Projects">
+    <div class="container fade-in">
+        <h2>Projects</h2>
+        <div class="experience-grid">
+
+            <div class="experience-card">
+                <h3>Helical Antenna for CubeSat</h3>
+                <div class="experience-date">CST Studio | RF & Antenna Design</div>
+                <p>Designed and simulated a <strong>helical antenna for CubeSat applications</strong> using CST Studio Suite. Optimized gain, axial ratio, and radiation pattern for reliable satellite communications. 
+                <br><a href="https://www.canva.com/design/DAGm8L1XZ2E/IkJfsg9IQQaez6XNQERYOQ/edit" target="_blank">📂 View Project</a></p>
+            </div>
+
+            <div class="experience-card">
+                <h3>Two-Stage Operational Amplifier Design</h3>
+                <div class="experience-date">Cadence | Analog Electronics</div>
+                <p>Designed and simulated a <strong>two-stage operational amplifier</strong> using Cadence tools. Report includes analysis of gain, stability, and frequency response.
+                <br><a href="https://docs.google.com/document/d/1YCWAslXkR-3dVFsUuKsRfNy-HRjki1Xd/edit?usp=sharing" target="_blank">📂 View Report</a></p>
+            </div>
+
+            <div class="experience-card">
+                <h3>PID Controller for RC Circuit</h3>
+                <div class="experience-date">Control Systems | MATLAB</div>
+                <p>Developed a <strong>PID controller</strong> for a second-order RC circuit. The project analyzed stability, transient response, and system performance improvements. 
+                <br><a href="https://www.overleaf.com/read/xxzyfwnyhhyw#4810c5" target="_blank">📂 View Project</a></p>
+            </div>
+
+            <div class="experience-card">
+                <h3>PCM-Based Voice Codec</h3>
+                <div class="experience-date">MATLAB | Digital Communications</div>
+                <p>Implemented a <strong>PCM-based voice codec</strong> for digital voice transmission over data networks, including encoding, decoding, and quality evaluation.
+                <br><a href="https://drive.google.com/drive/folders/1VSncmjbt0pA3mOJoWUxLL1FacxOjVo_o" target="_blank">📂 View Files</a></p>
+            </div>
+
+            <div class="experience-card">
+                <h3>Network Topology for Small Business</h3>
+                <div class="experience-date">eNSP | Routing & Switching</div>
+                <p>Built and simulated a secure VLAN-based campus network with routing, switching, and firewall configurations for a small business environment.</p>
+                <br><a href="https://www.linkedin.com/posts/ashar-sakr-3232b9128_basic-campus-network-using-ensp-activity-7363539423403167745-Otfu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB9eUYsBgfFwAIkwsyqG4AouWCCufdP8u7k" target="_blank">📂 View Files</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    
+ 
+
+        
+    <section id="Offeredservices">
+    <div class="container fade-in">
+        <h2>Offered Services</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Network Design & Optimization</h3>
+                <p>I design and optimize scalable and secure network infrastructures, ensuring high performance and reliability for organizations.</p>
+            </div>
+            <div class="skill-category">
+                <h3>Antenna & RF Systems</h3>
+                <p>Specialized in antenna design and RF systems, delivering efficient and innovative communication hardware solutions.</p>
+            </div>
+            <div class="skill-category">
+                <h3>Embedded Systems & Automation</h3>
+                <p>I build and program embedded systems, blending automation and AI to create impactful and intelligent solutions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ashar Salama. All rights reserved.</p>
+            <p>Ready to contribute to innovative engineering projects</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to convert uploaded image to data URL
+        function handleImageUpload() {
+            // This would be implemented with file upload functionality
+            // For now, using a placeholder approach
+            const profileImg = document.querySelector('.profile-img');
+            
+            // You can replace this with your actual image URL or data URL
+            // profileImg.src = 'your-image-url-here.jpg';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add some interactivity to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.2s ease';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
